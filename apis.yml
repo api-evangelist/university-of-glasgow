@@ -73,6 +73,10 @@ common:
     url: finops/university-of-glasgow-finops.yml
   - type: Review
     url: review.yml
+  - type: Blog
+    url: blogs/blogs.json
+  - type: JSONLD
+    url: json-ld/university-of-glasgow-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

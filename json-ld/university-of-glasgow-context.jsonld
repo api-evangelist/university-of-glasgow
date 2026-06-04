@@ -1,0 +1,89 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "oai": "http://www.openarchives.org/OAI/2.0/",
+    "uog": "https://www.gla.ac.uk/ns#",
+    "@vocab": "https://www.gla.ac.uk/ns#",
+
+    "University": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "foundingDate": "schema:foundingDate",
+    "location": "schema:location",
+    "sameAs": "schema:sameAs",
+
+    "Repository": "schema:DataCatalog",
+    "repositoryName": "schema:name",
+    "baseURL": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "adminEmail": "schema:email",
+    "protocolVersion": "uog:protocolVersion",
+    "earliestDatestamp": {
+      "@id": "uog:earliestDatestamp",
+      "@type": "schema:DateTime"
+    },
+    "metadataFormat": "uog:metadataFormat",
+
+    "Record": "schema:CreativeWork",
+    "identifier": "dc:identifier",
+    "title": "dc:title",
+    "creator": {
+      "@id": "dc:creator",
+      "@container": "@set"
+    },
+    "subject": {
+      "@id": "dc:subject",
+      "@container": "@set"
+    },
+    "date": {
+      "@id": "dc:date",
+      "@type": "schema:Date"
+    },
+    "type": "dc:type",
+    "publisher": "dc:publisher",
+    "datestamp": {
+      "@id": "uog:datestamp",
+      "@type": "schema:DateTime"
+    },
+    "setSpec": "uog:setSpec"
+  },
+  "@type": "University",
+  "name": "University of Glasgow",
+  "description": "A public research university in Glasgow, Scotland, United Kingdom, founded in 1451. Its machine-accessible developer footprint is centered on the Enlighten institutional repository and Enlighten Research Data repository, both running on EPrints and exposing OAI-PMH 2.0 metadata harvesting endpoints.",
+  "url": "https://www.gla.ac.uk/",
+  "foundingDate": "1451",
+  "location": {
+    "@type": "schema:Place",
+    "name": "Glasgow, Scotland, United Kingdom"
+  },
+  "sameAs": [
+    "https://github.com/UoGSoE",
+    "https://www.linkedin.com/school/university-of-glasgow/"
+  ],
+  "uog:catalog": [
+    {
+      "@type": "Repository",
+      "repositoryName": "Enlighten Publications",
+      "baseURL": "https://eprints.gla.ac.uk/cgi/oai2",
+      "url": "https://eprints.gla.ac.uk/information.html",
+      "adminEmail": "research-enlighten@glasgow.ac.uk",
+      "protocolVersion": "2.0",
+      "earliestDatestamp": "2025-03-28T21:34:23Z",
+      "metadataFormat": ["oai_dc", "didl", "mets", "oai_bibl", "rdf", "rioxx", "uketd_dc"]
+    },
+    {
+      "@type": "Repository",
+      "repositoryName": "Enlighten Research Data",
+      "baseURL": "https://researchdata.gla.ac.uk/cgi/oai2",
+      "url": "https://researchdata.gla.ac.uk/",
+      "adminEmail": "research-datamanagement@glasgow.ac.uk",
+      "protocolVersion": "2.0",
+      "earliestDatestamp": "2015-07-24T09:30:57Z"
+    }
+  ]
+}
