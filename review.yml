@@ -1,0 +1,49 @@
+---
+name: University of Glasgow
+description: University of Glasgow public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-glasgow/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      The University of Glasgow has no unified, documented developer/API portal.
+      Its confirmed, machine-accessible public surface consists of two EPrints
+      OAI-PMH 2.0 endpoints, both of which I probed live and returned HTTP 200:
+      Enlighten Publications (eprints.gla.ac.uk/cgi/oai2) and Enlighten Research
+      Data (researchdata.gla.ac.uk/cgi/oai2), the latter returning a valid
+      Identify response naming "Enlighten Research Data". Departmental
+      open-source code exists on GitHub (e.g. UoGSoE, School of Engineering IT,
+      verified live) but there is no single official org. Most institutional
+      systems sit behind Shibboleth/SAML SSO (GUID). No REST developer portal,
+      no public SignUp, no documented rate limits or pricing were found; no
+      endpoints were fabricated.
+    endpoints:
+      - url: https://www.gla.ac.uk/
+        status: 200
+        note: Official university website.
+      - url: https://eprints.gla.ac.uk/cgi/oai2?verb=Identify
+        status: 200
+        note: Enlighten Publications OAI-PMH 2.0 endpoint, live.
+      - url: https://researchdata.gla.ac.uk/cgi/oai2?verb=Identify
+        status: 200
+        note: Enlighten Research Data OAI-PMH 2.0, valid Identify response.
+      - url: https://eprints.gla.ac.uk/information.html
+        status: 200
+        note: Repository about/information page (human docs).
+      - url: https://github.com/UoGSoE
+        status: 200
+        note: School of Engineering IT GitHub org (departmental, not official org-wide).
+      - url: https://eleanor.lib.gla.ac.uk/
+        status: 200
+        note: Library classic catalogue search; no documented public API surfaced.
+      - url: https://www.gla.ac.uk/myglasgow/it/
+        status: 200
+        note: IT services; SSO/Shibboleth gated systems, no public API docs.
+      - url: https://github.com/UofGlasgow
+        status: 404
+        note: No single university-wide official GitHub org exists at this handle.
+      - url: https://www.linkedin.com/school/university-of-glasgow/
+        status: 999
+        note: Official LinkedIn school page; 999 is LinkedIn anti-bot, page exists.

@@ -1,0 +1,78 @@
+---
+aid: university-of-glasgow
+name: University of Glasgow
+description: >-
+  The University of Glasgow is a public research university in Glasgow, Scotland,
+  United Kingdom, founded in 1451 and ranked #62 in the QS World University
+  Rankings 2025. Its public, machine-accessible developer footprint is centered
+  on scholarly infrastructure rather than a unified developer portal: the
+  Enlighten institutional repository and Enlighten Research Data repository both
+  run on EPrints and expose OAI-PMH 2.0 metadata harvesting endpoints. There is
+  no single university-wide API developer portal; departmental engineering teams
+  publish open-source code on GitHub, and access to most internal systems is
+  gated behind Shibboleth/SAML single sign-on (GUID).
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/university-of-glasgow/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Access
+  - Repository
+  - OAI-PMH
+  - United Kingdom
+  - Scotland
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: university-of-glasgow:enlighten-oai
+    name: Enlighten Publications OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata harvesting endpoint for Enlighten, the University of
+      Glasgow's EPrints institutional repository of publications (journal
+      articles, theses, conference papers, books and more). Supports standard
+      OAI-PMH verbs (Identify, ListRecords, ListMetadataFormats, GetRecord).
+    humanURL: https://eprints.gla.ac.uk/information.html
+    baseURL: https://eprints.gla.ac.uk/cgi/oai2
+    tags: [ Repository, OAI-PMH, Open Access, Publications, EPrints, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://eprints.gla.ac.uk/information.html
+  - aid: university-of-glasgow:researchdata-oai
+    name: Enlighten Research Data OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata harvesting endpoint for Enlighten Research Data, the
+      University of Glasgow's EPrints research data repository and registry.
+      Returns a valid Identify response and supports standard OAI-PMH verbs for
+      harvesting research dataset metadata.
+    humanURL: https://researchdata.gla.ac.uk/
+    baseURL: https://researchdata.gla.ac.uk/cgi/oai2
+    tags: [ Repository, OAI-PMH, Research Data, EPrints, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://researchdata.gla.ac.uk/
+common:
+  - type: Website
+    url: https://www.gla.ac.uk/
+  - type: GitHub
+    url: https://github.com/UoGSoE
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-glasgow/
+  - type: Authentication
+    url: https://www.gla.ac.uk/myglasgow/it/
+  - type: Plans
+    url: plans/university-of-glasgow-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/university-of-glasgow-rate-limits.yml
+  - type: FinOps
+    url: finops/university-of-glasgow-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
