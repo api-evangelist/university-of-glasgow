@@ -57,6 +57,8 @@ apis:
       - type: Documentation
         url: https://researchdata.gla.ac.uk/
 common:
+  - type: DomainSecurity
+    url: security/university-of-glasgow-domain-security.yml
   - type: Website
     url: https://www.gla.ac.uk/
   - type: GitHub
