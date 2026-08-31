@@ -1,95 +1,405 @@
 ---
 aid: university-of-glasgow
 name: University of Glasgow
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of Glasgow is a public research university in Glasgow, Scotland,
-  United Kingdom, founded in 1451 and ranked #62 in the QS World University
-  Rankings 2025. Its public, machine-accessible developer footprint is centered
-  on scholarly infrastructure rather than a unified developer portal: the
-  Enlighten institutional repository and Enlighten Research Data repository both
-  run on EPrints and expose OAI-PMH 2.0 metadata harvesting endpoints. There is
-  no single university-wide API developer portal; departmental engineering teams
-  publish open-source code on GitHub, and access to most internal systems is
-  gated behind Shibboleth/SAML single sign-on (GUID).
+  The University of Glasgow is a public research university in Glasgow, Scotland, founded in 1451 and
+  a member of the Russell Group. Its programmable footprint is entirely its own — no part of it was
+  found to be a vendor's contract running under the university's name — but it is small, unadvertised
+  and library-shaped rather than product-shaped. What the institution actually operates and runs
+  itself, verified live on 2026-08-30, is the Enlighten repository estate on its own EPrints
+  deployment: three OAI-PMH 2.0 endpoints (Publications, Research Data and Theses, the last of which
+  was not previously catalogued) and an anonymous read REST interface over the same repositories that
+  the university does not describe anywhere. Alongside them it operates a Shibboleth SAML 2.0 identity
+  provider scoped gla.ac.uk and registered in the UK Access Management Federation, which by volume and
+  maintenance is the institution's largest machine-readable artifact and is a login federation rather
+  than a data API. It mints its own DataCite DOIs under prefix 10.5525 and is Crossref member 21131.
+  Two further surfaces are live on Glasgow hosts but run a third party's contract — the self-hosted
+  Moodle VLE's LTI 1.3 platform endpoints and the library's Innovative Interfaces Sierra API, both
+  credentialed. Its discovery layer and its research guides are vendor tenancies on OCLC WorldCat and
+  Springshare LibGuides, recorded here as tenant relationships and deliberately not credited to the
+  university. There is no central developer portal, no API key issuance, no changelog, no status page
+  and no developer support channel anywhere on gla.ac.uk.
 type: Index
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Six institution-operated surfaces and one identity federation were found, probed and verified live
+    on 2026-08-30, and two vendor-platform tenancies were identified and labelled rather than credited.
+    The profile carries no misattribution to correct: nothing in this repository was ever a vendor's
+    contract, so unlike most of the university cohort there was no Figshare, Pure, Ex Libris or
+    Dataverse spec to remove. Three findings are new to this run — the Enlighten Theses OAI-PMH
+    endpoint, the Enlighten EPrints REST interface, and the Shibboleth identity provider with its UK
+    federation registration. The profile remains thin in developer-experience terms — no portal, no
+    changelog, no status page, no support channel, no scopes, no versioning policy and no
+    machine-readable error documents — and that thinness is a measurement of the institution rather
+    than a gap in coverage. Two claims were checked and did not survive: www.gla.ac.uk/llms.txt is a
+    301 redirect to a law postgraduate page rather than an agent manifest, and no
+    .well-known/security.txt exists.
+  generated: '2026-08-30'
+  method: probed
+  evidence:
+  - url: https://eprints.gla.ac.uk/cgi/oai2?verb=Identify
+    status: 200
+    note: OAI-PMH 2.0, repositoryName "Enlighten Publications", 7 metadata formats including rioxx
+  - url: https://researchdata.gla.ac.uk/cgi/oai2?verb=Identify
+    status: 200
+    note: OAI-PMH 2.0, "Enlighten Research Data", records back to 2015-07-24
+  - url: https://theses.gla.ac.uk/cgi/oai2?verb=Identify
+    status: 200
+    note: OAI-PMH 2.0, "Enlighten Theses" — new find, not in the previous profile
+  - url: https://eprints.gla.ac.uk/rest/
+    status: 200
+    note: EPrints REST dataset index — eprint, user, subject; anonymous read
+  - url: https://eprints.gla.ac.uk/rest/eprint/1.xml
+    status: 200
+    note: 12,470-byte EPrints 2.0 XML record returned without credentials
+  - url: https://eprints.gla.ac.uk/rest/user/1.xml
+    status: 401
+    note: user records correctly gated — the public index lists identifiers only
+  - url: https://idp.gla.ac.uk/idp/shibboleth
+    status: 200
+    note: SAML 2.0 IdP metadata, entityID https://idp.gla.ac.uk/shibboleth, scope gla.ac.uk
+  - url: http://mdq.ukfederation.org.uk/entities/https%3A%2F%2Fidp.gla.ac.uk%2Fshibboleth
+    status: 200
+    note: signed federation metadata, registrationAuthority ukfederation.org.uk
+  - url: https://api.datacite.org/prefixes/10.5525
+    status: 200
+    note: prefix held by DataCite client bl.glasgow, provider ihoc "University of Glasgow"
+  - url: https://api.crossref.org/members?query=university+of+glasgow
+    status: 200
+    note: Crossref member 21131, 709 deposited DOIs
+  - url: https://moodle.gla.ac.uk/mod/lti/certs.php
+    status: 200
+    note: live LTI 1.3 platform JWKS, one RS256 key, on a self-hosted Moodle at 130.209.14.69
+  - url: https://moodle.gla.ac.uk/webservice/rest/server.php
+    status: 200
+    note: Moodle Web Services live; returns an invalidtoken EXCEPTION inside a 200
+  - url: https://eleanor.lib.gla.ac.uk/iii/sierra-api/v6/info/token
+    status: 401
+    note: Innovative Interfaces Sierra API live and credentialed on the library's own host
+  - url: https://gla.on.worldcat.org/advancedsearch
+    status: 200
+    note: OCLC WorldCat Discovery tenancy — vendor contract, recorded as tenant
+  - url: https://gla.libguides.com/az/databases
+    status: 200
+    note: Springshare LibGuides tenancy — vendor contract, recorded as tenant
+  - url: https://www.gla.ac.uk/llms.txt
+    status: 301
+    note: soft claim — redirects to /schools/law/postgraduate/; not an agent manifest
+  - url: https://www.gla.ac.uk/.well-known/security.txt
+    status: 404
+  - url: https://status.gla.ac.uk/
+    status: 000
+    note: does not resolve — no public status page
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
-  callable_host: false
+  commercial: false
+  callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: medium
+  confidence: high
   source:
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probe
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free and open — no registration, no key, no scopes
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
-position: Consumer
-access: 3rd-Party
+  - probe
+  generated: '2026-08-30'
+  method: probed
+position: Provider
+access: Public
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-glasgow.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-glasgow/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
-  - Research
-  - Open Access
-  - Repository
-  - OAI-PMH
+  - Higher Education
+  - Education
   - United Kingdom
   - Scotland
+  - Russell Group
+  - Research Data
+  - Repository
+  - OAI-PMH
+  - Open Access
+  - Identity Federation
+  - Digital Library
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
   - aid: university-of-glasgow:enlighten-oai
     name: Enlighten Publications OAI-PMH
+    x-operator: institution
+    x-operator-evidence: >-
+      eprints.gla.ac.uk is a CNAME to new-rocky.lib.gla.ac.uk (130.209.34.164), inside the
+      University of Glasgow's own network and under its own registrable domain. The Identify
+      response names the repository "Enlighten Publications" with adminEmail
+      research-enlighten@glasgow.ac.uk. The repository software is EPrints, a third party's; the
+      deployment, the host, the data and the endpoint are the institution's, which is what the
+      operator axis measures.
     description: >-
-      OAI-PMH 2.0 metadata harvesting endpoint for Enlighten, the University of
-      Glasgow's EPrints institutional repository of publications (journal
-      articles, theses, conference papers, books and more). Supports standard
-      OAI-PMH verbs (Identify, ListRecords, ListMetadataFormats, GetRecord).
+      OAI-PMH 2.0 metadata harvesting over Enlighten, the University of Glasgow's EPrints
+      institutional repository of research outputs — journal articles, conference papers, books,
+      book sections and theses. Seven metadata formats are offered: oai_dc, didl, mets, oai_bibl,
+      rdf, rioxx (the UK open-access and REF compliance profile) and uketd_dc. Author ORCID
+      identifiers are carried inline in the harvestable metadata. Open, unauthenticated, deletedRecord
+      persistent, granularity to the second.
     humanURL: https://eprints.gla.ac.uk/information.html
     baseURL: https://eprints.gla.ac.uk/cgi/oai2
     tags: [ Repository, OAI-PMH, Open Access, Publications, EPrints, Metadata ]
     properties:
       - type: Documentation
         url: https://eprints.gla.ac.uk/information.html
+      - type: x-examples
+        url: examples/university-of-glasgow-enlighten-oai-identify-example.xml
+      - type: x-conformance
+        url: conformance/university-of-glasgow-conformance.yml
+      - type: x-errors
+        url: errors/university-of-glasgow-errors.yml
+      - type: x-vocabulary
+        url: vocabulary/university-of-glasgow-vocabulary.yml
+      - type: Website
+        url: https://eprints.gla.ac.uk/
   - aid: university-of-glasgow:researchdata-oai
     name: Enlighten Research Data OAI-PMH
+    x-operator: institution
+    x-operator-evidence: >-
+      researchdata.gla.ac.uk is a CNAME to new-researchdata.lib.gla.ac.uk (130.209.34.138), the
+      institution's own network. Identify names "Enlighten Research Data" with adminEmail
+      research-datamanagement@glasgow.ac.uk. This is the surface that in most of this cohort turns
+      out to be a Figshare or Dataverse tenancy — at Glasgow it is not: the repository is the
+      university's own EPrints deployment and the DOIs are minted under the university's own
+      DataCite prefix.
     description: >-
-      OAI-PMH 2.0 metadata harvesting endpoint for Enlighten Research Data, the
-      University of Glasgow's EPrints research data repository and registry.
-      Returns a valid Identify response and supports standard OAI-PMH verbs for
-      harvesting research dataset metadata.
+      OAI-PMH 2.0 metadata harvesting over Enlighten Research Data, the University of Glasgow's
+      research data repository and registry. Records carry DataCite DOIs minted under the
+      university's own prefix in the form 10.5525/gla.researchdata.NNN, back to 2015-07-24. Metadata
+      formats oai_dc, didl and rdf. Open and unauthenticated.
     humanURL: https://researchdata.gla.ac.uk/
     baseURL: https://researchdata.gla.ac.uk/cgi/oai2
-    tags: [ Repository, OAI-PMH, Research Data, EPrints, Metadata ]
+    tags: [ Repository, OAI-PMH, Research Data, EPrints, Metadata, DataCite ]
     properties:
       - type: Documentation
         url: https://researchdata.gla.ac.uk/
+      - type: x-examples
+        url: examples/university-of-glasgow-researchdata-oai-identify-example.xml
+      - type: x-conformance
+        url: conformance/university-of-glasgow-conformance.yml
+      - type: x-vocabulary
+        url: vocabulary/university-of-glasgow-vocabulary.yml
+      - type: Website
+        url: https://researchdata.gla.ac.uk/
+  - aid: university-of-glasgow:theses-oai
+    name: Enlighten Theses OAI-PMH
+    x-operator: institution
+    x-operator-evidence: >-
+      theses.gla.ac.uk is a CNAME to new-theses.lib.gla.ac.uk (130.209.34.163), the institution's
+      own network. Identify names "Enlighten Theses" with adminEmail theses@glasgow.ac.uk.
+    description: >-
+      OAI-PMH 2.0 metadata harvesting over Enlighten Theses, the University of Glasgow's electronic
+      theses repository, with records back to 2012-12-10. Offers oai_dc, didl, mets, oai_bibl, rdf
+      and uketd_dc, the UK Electronic Theses Online Service profile. Open and unauthenticated. This
+      endpoint was not present in the previous profile of this institution and was found by probe on
+      2026-08-30.
+    humanURL: https://theses.gla.ac.uk/information.html
+    baseURL: https://theses.gla.ac.uk/cgi/oai2
+    tags: [ Repository, OAI-PMH, Theses, EPrints, Metadata, Open Access ]
+    properties:
+      - type: Documentation
+        url: https://theses.gla.ac.uk/information.html
+      - type: x-examples
+        url: examples/university-of-glasgow-theses-oai-identify-example.xml
+      - type: x-conformance
+        url: conformance/university-of-glasgow-conformance.yml
+      - type: Website
+        url: https://theses.gla.ac.uk/
+  - aid: university-of-glasgow:enlighten-rest
+    name: Enlighten EPrints REST API
+    x-operator: institution
+    x-operator-evidence: >-
+      Served from the same three institution-owned Enlighten hosts as the OAI-PMH endpoints
+      (eprints, theses and researchdata under gla.ac.uk, all on 130.209.34.x). Records are returned
+      in the EPrints 2.0 data namespace with Glasgow identifiers such as
+      https://eprints.gla.ac.uk/id/eprint/1. No vendor identity appears in any response.
+    description: >-
+      An anonymous read interface over the Enlighten repositories that the University of Glasgow does
+      not document or advertise anywhere: a dataset index at /rest/, an object index per dataset, a
+      full EPrints 2.0 XML record at /rest/eprint/{id}.xml, a field index per record, and a plain
+      text view of any single field. The subject taxonomy is public; the user dataset lists
+      identifiers only and each user record returns 401. There is no published OpenAPI — the
+      description carried here was derived by API Evangelist from live probes on 2026-08-30 and is
+      marked as such.
+    humanURL: https://eprints.gla.ac.uk/information.html
+    baseURL: https://eprints.gla.ac.uk/rest
+    tags: [ Repository, EPrints, Research Outputs, Metadata, Open Access ]
+    properties:
+      - type: OpenAPI
+        url: openapi/university-of-glasgow-enlighten-rest-openapi.yml
+      - type: x-openapi-original
+        url: openapi/_original/university-of-glasgow-enlighten-rest.yml
+      - type: x-examples
+        url: examples/university-of-glasgow-eprints-rest-record-example.xml
+      - type: Authentication
+        url: authentication/university-of-glasgow-authentication.yml
+      - type: x-errors
+        url: errors/university-of-glasgow-errors.yml
+      - type: x-lifecycle
+        url: lifecycle/university-of-glasgow-lifecycle.yml
+      - type: x-vocabulary
+        url: vocabulary/university-of-glasgow-vocabulary.yml
+      - type: Documentation
+        url: https://eprints.gla.ac.uk/information.html
+  - aid: university-of-glasgow:moodle-lti
+    name: Moodle VLE — LTI 1.3 Platform and Web Services
+    x-operator: institution
+    x-vendor: moodle
+    x-operator-evidence: >-
+      moodle.gla.ac.uk is 130.209.14.69, the university's own address space — a self-hosted Moodle,
+      not a moodlecloud or vendor-hosted tenancy, so the host rule reads institution. The API
+      contract, the LTI implementation and the exception envelope are Moodle's product and are named
+      as such here rather than credited to Glasgow's engineering. Moodle's generic specification is
+      deliberately NOT saved under this institution.
+    description: >-
+      The University of Glasgow's virtual learning environment, self-hosted on Moodle, exposes a live
+      LTI 1.3 Advantage platform surface — a public JWKS at /mod/lti/certs.php carrying one RS256
+      signing key, an OIDC authorisation endpoint and a token endpoint — plus the Moodle Web Services
+      REST endpoint. Both are credentialed: access is by tool registration or token issued by the
+      institution, with no public self-service. This is the university's only confirmed LTI
+      conformance and one of only two surfaces here where the institution runs the host and a third
+      party wrote the contract.
+    humanURL: https://moodle.gla.ac.uk/
+    baseURL: https://moodle.gla.ac.uk/webservice/rest/server.php
+    tags: [ Learning Management, LTI, Virtual Learning Environment, Education ]
+    properties:
+      - type: x-conformance
+        url: conformance/university-of-glasgow-conformance.yml
+      - type: Authentication
+        url: authentication/university-of-glasgow-authentication.yml
+      - type: x-examples
+        url: examples/university-of-glasgow-moodle-lti-jwks-example.json
+      - type: x-errors
+        url: errors/university-of-glasgow-errors.yml
+      - type: Website
+        url: https://moodle.gla.ac.uk/
+  - aid: university-of-glasgow:sierra-library-api
+    name: Library Sierra API (Innovative Interfaces)
+    x-operator: institution
+    x-vendor: innovative-interfaces
+    x-operator-evidence: >-
+      eleanor.lib.gla.ac.uk is 130.209.19.231, the University of Glasgow Library's own host, and the
+      page title is "University of Glasgow Library". The API path /iii/sierra-api/v6/ and the
+      version scheme are Innovative Interfaces' product; the deployment and the host are the
+      institution's. Innovative Interfaces' generic specification is deliberately NOT saved under
+      this institution.
+    description: >-
+      The library management system's Sierra REST API, live on the University of Glasgow Library's
+      own catalogue host. /iii/sierra-api/v6/info/token returned 401 on 2026-08-30 — present and
+      credentialed rather than absent. Keys are issued by the library to named partners; there is no
+      public registration path and no public documentation on gla.ac.uk. Recorded because a live
+      credentialed endpoint is a finding, not a gap.
+    humanURL: https://eleanor.lib.gla.ac.uk/
+    baseURL: https://eleanor.lib.gla.ac.uk/iii/sierra-api/v6
+    tags: [ Library, Library Catalog, Integrated Library System ]
+    properties:
+      - type: Authentication
+        url: authentication/university-of-glasgow-authentication.yml
+      - type: x-errors
+        url: errors/university-of-glasgow-errors.yml
+      - type: Website
+        url: https://www.gla.ac.uk/myglasgow/library/
+  - aid: university-of-glasgow:worldcat-discovery
+    name: WorldCat Discovery (OCLC tenancy)
+    x-operator: tenant
+    x-vendor: oclc
+    x-operator-evidence: >-
+      gla.on.worldcat.org is an institution-specific subdomain on OCLC's shared worldcat.org
+      platform, reached from the University of Glasgow Library's own pages. The holdings and the
+      institutional configuration are Glasgow's; the API contract, the keys and the OAuth scheme are
+      OCLC's. This entry records the tenancy, which is a real institutional fact, without crediting
+      Glasgow for OCLC's engineering. OCLC's generic specification is deliberately NOT saved here.
+    description: >-
+      The University of Glasgow Library's discovery layer, operated for the university by OCLC on a
+      Glasgow-scoped WorldCat subdomain. Programmatic access exists but runs entirely on OCLC's
+      WorldCat Search API, keys and authentication.
+    humanURL: https://gla.on.worldcat.org/advancedsearch
+    tags: [ Library Catalog, Discovery, Vendor Tenancy ]
+    properties:
+      - type: Website
+        url: https://gla.on.worldcat.org/advancedsearch
+      - type: Documentation
+        url: https://www.gla.ac.uk/myglasgow/library/
+  - aid: university-of-glasgow:libguides
+    name: LibGuides (Springshare tenancy)
+    x-operator: tenant
+    x-vendor: springshare
+    x-operator-evidence: >-
+      gla.libguides.com is an institution-specific subdomain on Springshare's shared libguides.com
+      platform, linked from the University of Glasgow Library. The guide content and the databases
+      A-Z are Glasgow's; the LibGuides API and its site keys are Springshare's. Springshare's generic
+      specification is deliberately NOT saved here.
+    description: >-
+      The library's research guides and databases A-Z, operated for the university by Springshare on
+      a Glasgow-scoped LibGuides subdomain. Any machine access runs on Springshare's LibGuides API
+      with site credentials issued by Springshare.
+    humanURL: https://gla.libguides.com/az/databases
+    tags: [ Library, Research Guides, Vendor Tenancy ]
+    properties:
+      - type: Website
+        url: https://gla.libguides.com/az/databases
 common:
-  - type: DomainSecurity
-    url: security/university-of-glasgow-domain-security.yml
   - type: Website
     url: https://www.gla.ac.uk/
+  - type: GitHubOrganization
+    url: https://github.com/University-of-Glasgow-Public
   - type: GitHub
     url: https://github.com/UoGSoE
   - type: LinkedIn
     url: https://www.linkedin.com/school/university-of-glasgow/
-  - type: Authentication
+  - type: IdentityFederation
+    url: https://idp.gla.ac.uk/idp/shibboleth
+  - type: ResearchRepository
+    url: https://eprints.gla.ac.uk/
+  - type: ResearchRepository
+    url: https://researchdata.gla.ac.uk/
+  - type: ResearchRepository
+    url: https://theses.gla.ac.uk/
+  - type: LibraryCatalog
+    url: https://eleanor.lib.gla.ac.uk/
+  - type: CourseCatalog
+    url: https://www.gla.ac.uk/coursecatalogue/
+  - type: ResearchComputing
+    url: https://www.gla.ac.uk/research/arc/
+  - type: AIPolicy
+    url: https://www.gla.ac.uk/myglasgow/leads/allstaff/generativeai/
+  - type: PrivacyPolicy
+    url: https://www.gla.ac.uk/legal/privacy/
+  - type: TermsOfService
+    url: https://www.gla.ac.uk/legal/termsofuse/
+  - type: Support
     url: https://www.gla.ac.uk/myglasgow/it/
+  - type: x-conformance
+    url: conformance/university-of-glasgow-conformance.yml
+  - type: Authentication
+    url: authentication/university-of-glasgow-authentication.yml
+  - type: x-errors
+    url: errors/university-of-glasgow-errors.yml
+  - type: x-lifecycle
+    url: lifecycle/university-of-glasgow-lifecycle.yml
+  - type: x-vocabulary
+    url: vocabulary/university-of-glasgow-vocabulary.yml
+  - type: DomainSecurity
+    url: security/university-of-glasgow-domain-security.yml
   - type: Plans
     url: plans/university-of-glasgow-plans-pricing.yml
   - type: RateLimits
@@ -98,8 +408,6 @@ common:
     url: finops/university-of-glasgow-finops.yml
   - type: Review
     url: review.yml
-  - type: Blog
-    url: blogs/blogs.json
   - type: JSONLD
     url: json-ld/university-of-glasgow-context.jsonld
 maintainers:
