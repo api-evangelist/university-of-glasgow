@@ -1,0 +1,54 @@
+name: University of Glasgow — API lifecycle posture
+aid: university-of-glasgow
+generated: '2026-08-30'
+method: derived
+x-evidence-method: probed
+source: live probes and negative probes of University of Glasgow hosts, 2026-08-30
+summary: >-
+  The University of Glasgow operates its public machine-readable surfaces as library infrastructure,
+  not as products. There is no versioning policy, no deprecation policy, no changelog, no status
+  page and no announcement channel for any of them. Version information exists only where a protocol
+  or a platform carries it: OAI-PMH declares protocolVersion 2.0, the Sierra library API carries v6
+  in its path, and LTI is 1.3. This is stable, long-lived infrastructure rather than neglected
+  infrastructure — the Enlighten repositories have been running since at least 2012 and the DataCite
+  prefix since 2010 — but the absence of lifecycle communication is real and is measured as such.
+versioning:
+  policy: none published
+  observed:
+  - surface: university-of-glasgow:enlighten-oai
+    version: OAI-PMH 2.0
+    carried_in: Identify/protocolVersion
+  - surface: university-of-glasgow:enlighten-rest
+    version: unversioned path
+    carried_in: none
+    note: /rest/ has no version segment; a breaking change would be silent.
+  - surface: university-of-glasgow:sierra-library-api
+    version: v6
+    carried_in: URL path (/iii/sierra-api/v6/)
+    note: Version scheme is Innovative Interfaces', not the institution's.
+  - surface: university-of-glasgow:moodle-lti
+    version: LTI 1.3
+    carried_in: platform capability
+deprecation:
+  policy: none published
+  sunset_header: not observed
+  detail: No Deprecation or Sunset headers were returned by any probed endpoint.
+change_communication:
+  changelog: none
+  status_page: none
+  detail: >-
+    No status.gla.ac.uk host resolves, and no IT status page was found under
+    https://www.gla.ac.uk/myglasgow/it/. Repository availability is not publicly reported.
+  probed:
+  - url: https://status.gla.ac.uk/
+    status: 000
+    note: does not resolve
+  - url: https://www.gla.ac.uk/myglasgow/it/statuspage/
+    status: 404
+longevity:
+  enlighten_research_data_earliest_record: '2015-07-24'
+  enlighten_theses_earliest_record: '2012-12-10'
+  datacite_prefix_held_since: '2010-12-21'
+  detail: >-
+    Read as evidence of durability rather than of governance: these surfaces have been continuously
+    operated for over a decade without a published lifecycle policy.

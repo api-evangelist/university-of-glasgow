@@ -1,0 +1,78 @@
+name: University of Glasgow — error posture
+aid: university-of-glasgow
+generated: '2026-08-30'
+method: probed
+source: live error probes of University of Glasgow operated endpoints, 2026-08-30
+summary: >-
+  Glasgow publishes no error reference of its own. What error handling it has is inherited from the
+  protocols and platforms it runs: OAI-PMH's own error vocabulary on the three Enlighten endpoints,
+  plain HTTP status codes on the EPrints REST interface, and Moodle's exception envelope on the
+  virtual learning environment. Every code below was produced by sending a deliberately bad request
+  and reading the response.
+surfaces:
+- aid: university-of-glasgow:enlighten-oai
+  x-operator: institution
+  format: OAI-PMH 2.0 error element
+  envelope: '<OAI-PMH><error code="..."></error></OAI-PMH> returned with HTTP 200'
+  note: >-
+    OAI-PMH returns protocol errors inside a 200 response, which is correct for the protocol and a
+    trap for generic HTTP clients: a caller checking only the status code will read a failed request
+    as a success.
+  observed:
+  - code: badVerb
+    http_status: 200
+    request: /cgi/oai2?badVerb
+    message: Requires verb argument
+  - code: idDoesNotExist
+    http_status: 200
+    request: /cgi/oai2?verb=GetRecord&identifier=oai:bogus&metadataPrefix=oai_dc
+    message: "'oai:bogus' is not a valid item in this repository"
+  - code: cannotDisseminateFormat
+    http_status: 200
+    request: /cgi/oai2?verb=ListRecords&metadataPrefix=nope
+    message: "Record not available as metadata type: 'nope'"
+  verified: '2026-08-30'
+- aid: university-of-glasgow:enlighten-rest
+  x-operator: institution
+  format: HTTP status codes with an HTML body
+  note: No machine-readable error document; the body is the repository's HTML error page.
+  observed:
+  - http_status: 404
+    request: /rest/eprint/1.json
+    message: Unsupported representation — only .xml and per-field .txt are served
+  - http_status: 401
+    request: /rest/user/1.xml
+    message: Authentication required for user records
+  - http_status: 303
+    request: /id/eprint/1
+    message: Redirect from the linked-data identifier to the record page
+  verified: '2026-08-30'
+- aid: university-of-glasgow:moodle-lti
+  x-operator: institution
+  x-vendor: moodle
+  format: Moodle exception envelope (XML or JSON)
+  observed:
+  - http_status: 200
+    request: /webservice/rest/server.php
+    code: invalidtoken
+    message: Invalid token - token not found
+    note: >-
+      Moodle returns an EXCEPTION document with HTTP 200. Same trap as OAI-PMH — the status code
+      does not carry the failure.
+  - http_status: 400
+    request: /mod/lti/token.php
+    message: Bad request to the LTI 1.3 token endpoint without a signed client assertion
+  verified: '2026-08-30'
+- aid: university-of-glasgow:sierra-library-api
+  x-operator: institution
+  x-vendor: innovative-interfaces
+  observed:
+  - http_status: 401
+    request: /iii/sierra-api/v6/info/token
+    message: Credentialed endpoint, live, no anonymous access
+  verified: '2026-08-30'
+gaps:
+- No published error reference, error code list or troubleshooting page for any surface.
+- >-
+  Two of the four surfaces signal failure inside a 200 response, and neither documents that
+  anywhere on gla.ac.uk.

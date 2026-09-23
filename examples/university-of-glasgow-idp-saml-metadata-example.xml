@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" ID="_" cacheDuration="P0Y0M0DT6H0M0.000S" entityID="https://idp.gla.ac.uk/shibboleth" validUntil="2026-09-20T15:00:27Z"><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#_"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>A7wg3Qlizscedx4jCrDomwgMvrGToqGaY8T+2eBLkfA=</DigestValue></Reference></SignedInfo><SignatureValue>ckXFrhE/05ipY29JkrG+B4nAP0oEOS9T+O/ehGDLzzYXdJ+JZdRL3wm68C9OTJBoyjLDDP7wywWU
+zxlB6duiJ/9bX0SUG/aiv0XTSyPKjNw5UD7uBKHodLQZ4wbTrwx3MCpxHq0d7mY7o0nGHYRZQeF2
+VLRjRjejohEIH+jozq9L3cLRyGCFs9mXptI9wP41dV3H7xsr3EE59eofnyf+UU9Tto20sr7jpKwt
+O3oTZGIjbPwcVi1VnCqfZ+QWb17g27nJrmyZDQ60TQOvpEPbZc/VRDK/WIJf+22lVxFteEhYbXxO
+jDjDtMRN97YQeVMiaeOVKTjPPBFpXXMkaDmG9vx2RzTTjJKfOASBlZ1CZhtsHZ25ci69uOOGlpa0
+k32boCz2M/C/O6BrYqhRvDTTQvPTovOjwpbKG9lfxme9Ej3VMcIWjUKliTTQxmB+CyrmOsKBCgQw
+DZ9tSFLkHO6C7V2P+Jkz4m5PydwNwKAjuKeR6FrgTUtYCdKDym20LvicWr0AT5pmnrBzxjq+lPhD
+YO5ZHtJEhnmgdyM5wqdhsRPW08T5mQ4H1QRBMpwBcyH4or2RC3ZaLbnvjt6Bi9DJX0+rupo63ExU
+xVvRwY5NzNiM7VwBeVcLjfRyjOOE+9tQvpmqpSOfdhk3655uCw+ZAeXMEwXKhWQZFCh4I5QmslM=</SignatureValue></Signature>
+	<!--
+		This is a Shibboleth IdP for the University of Glasgow.
+	-->
+	<Extensions>
+        <mdrpi:PublicationInfo xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" creationInstant="2026-08-30T15:21:45Z" publisher="http://ukfederation.org.uk"/>
+
+
+		<ukfedlabel:AccountableUsers xmlns:ukfedlabel="http://ukfederation.org.uk/2006/11/label"/>
+
+		<mdrpi:RegistrationInfo xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" registrationAuthority="http://ukfederation.org.uk" registrationInstant="2007-09-19T15:05:41Z">
+			<mdrpi:RegistrationPolicy xml:lang="en">http://ukfederation.org.uk/doc/mdrps-20130902</mdrpi:RegistrationPolicy>
+		</mdrpi:RegistrationInfo>
+		<mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+			<saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="urn:oasis:names:tc:SAML:attribute:assurance-certification" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+				<saml:AttributeValue>https://refeds.org/sirtfi</saml:AttributeValue>
+			</saml:Attribute>
+			<saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Name="http://macedir.org/entity-category-support" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+				<saml:AttributeValue>http://refeds.org/category/research-and-scholarship</saml:AttributeValue>
+			</saml:Attribute>
+		</mdattr:EntityAttributes>
+	</Extensions>
+	<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+		<Extensions>
+			<shibmd:Scope xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" regexp="false">gla.ac.uk</shibmd:Scope>
+			<mdui:UIInfo xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+				<mdui:DisplayName xml:lang="en">University of Glasgow</mdui:DisplayName>
+				<mdui:Logo height="60" width="80">https://milngavie.cent.gla.ac.uk/UoG_colour_80x60.png</mdui:Logo>
+				<mdui:Logo height="16" width="16">https://milngavie.cent.gla.ac.uk/UoG_colour_16x16.png</mdui:Logo>
+			</mdui:UIInfo>
+			<mdui:DiscoHints xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+				<mdui:IPHint>130.209.0.0/16</mdui:IPHint>
+				<mdui:DomainHint>gla.ac.uk</mdui:DomainHint>
+				<mdui:GeolocationHint>geo:55.8719,-4.2875</mdui:GeolocationHint>
+			</mdui:DiscoHints>
+		</Extensions>
+		<KeyDescriptor use="signing">
+			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+				<ds:X509Data>
+					<ds:X509Certificate>
+						MIIEGjCCAoKgAwIBAgIUJIR7xIoaWVTfoH61dBTvJDD6XTAwDQYJKoZIhvcNAQEL
+						BQAwIzEhMB8GA1UEAwwYbWlsbmdhdmllLmNlbnQuZ2xhLmFjLnVrMB4XDTI1MDMw
+						MzExMTExOVoXDTQ1MDMwMzExMTExOVowIzEhMB8GA1UEAwwYbWlsbmdhdmllLmNl
+						bnQuZ2xhLmFjLnVrMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEApdbi
+						21zZk+ImokCriYvnHyLtKHEcBNTYL5AihXZpsIl70iPhykMW731lE7oMm40C0+J2
+						tOpplGmi/5SKZv9+FymUOa0GiCK5qmuADK/3hAsXPGc1H1VIyUVI4bDaUD5wXRHe
+						QXJKpKAmt+XagGzRfyLVm3+pWl5lanfXk1/AkDvBN0GH9GSl/lU9w6uIoDpMODph
+						QeKS0MMcJ0cE80ThbGvSx0saiMpH2N0zU7Rzdyu7Nv/Imx7Aam5+UneZOmCFHvL+
+						lz7J0vyJQykOcB1OyH6D3NaRmK3BDQddQWUtTFjotWRf/gRr/mkBKYxDF4ykeeDC
+						yazitlLzPJKgHTnQMRLXpenTyOSiHmMOf4/+zzs+6bnNNzQxuNR55Nzqywo+TnC8
+						qIg+bWp0C+Az4qTVwBVCo6qtmep2yBlYGmRoX9w73yBKp/LWhQxhfvillwOVEivX
+						xcYm/bPv/y3sRW6fJV1kAwos8VJGisHWtvRUwFgCAwjRFZwe/fO4mMxqHWXTAgMB
+						AAGjRjBEMB0GA1UdDgQWBBTFxnMTMLFczyWDFduogdD2Nw6eBzAjBgNVHREEHDAa
+						ghhtaWxuZ2F2aWUuY2VudC5nbGEuYWMudWswDQYJKoZIhvcNAQELBQADggGBACTm
+						thGI+UjG32ufsMIGlMMXi3XvsFXRBq0fOZnicNFU5EMs6Y2il0H468YfddmR3wPH
+						M0sWmU1yaB/lUNCsqXCoPRL3cY/hrcEzlsx0bO1JLnqpWP4Mwno/zMZJR6uwzKvp
+						4taq/klEyfwitflU6TC9SeGKLcv8mvyDVoIOLTozPSzmnlc4/4i30aHzD9hZzCOQ
+						Kfo7erurPvay1jSfiw4+cq9Bd7qKtqC0K7OrxGeAzQhlk6f78iEPRrKURNKxfG2C
+						42sSypO7XRF8cFJZWUWSI3+7Z+vSqgoH8D+k9w8UjA5t4k7Hkipb0G6uvVtC8C1Q
+						wZUlL9FfYapMbR7fbahDypcxrP+XJ15+ncUGiMlt3dw6SNeyXQ02zEV1SeAsiebp
+						uzeO+8ws+a4pJLqRFyXEZ8gyyDHUVQrg61VU4zaXzAHn5GTIiMHBTj+GvpJvcwt8
+						6OBcd1erUOAJ99GyZtCoW6MQFjsFtngFLyzIMHrhHj2RjFVxqhuaqNO4a76Olg==
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>
+		<KeyDescriptor use="encryption">
+			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+				<ds:X509Data>
+					<ds:X509Certificate>
+						MIIEGzCCAoOgAwIBAgIVAOLfxOTI2GnHyRHUHro07bq8eY1kMA0GCSqGSIb3DQEB
+						CwUAMCMxITAfBgNVBAMMGG1pbG5nYXZpZS5jZW50LmdsYS5hYy51azAeFw0yNTAz
+						MDMxMTExMzlaFw00NTAzMDMxMTExMzlaMCMxITAfBgNVBAMMGG1pbG5nYXZpZS5j
+						ZW50LmdsYS5hYy51azCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAM4o
+						9FVep2+A0E4C5kMKoYxTvZ905NMN9oVXgfBuYiD4gT+J3UTk+AQwgumapuvsqeTJ
+						F41kUu30Zt1F0UsIyrBmF5fpuUO8ZHMBkVGv+/d3YdjJkLqa5JUscY62cluvGzCp
+						xtTsR0XLlzC1/r7uispgI9DwkacGnrcTJVAitsoWS8pRthohgstrjqZ+s5rRZm30
+						PE+LdJ6osZQPMwajrjsx8TaU2ZqciK4GrnG/14wcJDMpufJKC/XoJKrGZGTT65R+
+						Z24MoneOumrIYbPZC8aw+T3tleHmue0LS54Z/Gwu3PgcplzxDwtIGcmXFLqQNkXO
+						T1tweNUkdzt8LUHn1HTP8bq+ARTKkufUsbrzs2KRbPQb3ZjE0liI/7O7tIhlPlTU
+						7GgSt7PzW0k19PzN6FEZEXXBA6SiFzG7J6+Vr0HEUE80HWHpYvGtFRWjvKBGi961
+						wOTpV5dLoorZuHeBLoZRTEfljon8tew34L+QGtxD6Bls7qKHmDFLvFau85yY7wID
+						AQABo0YwRDAdBgNVHQ4EFgQUI8+gmDPbZSWfu4wiFIwRHcw/BpYwIwYDVR0RBBww
+						GoIYbWlsbmdhdmllLmNlbnQuZ2xhLmFjLnVrMA0GCSqGSIb3DQEBCwUAA4IBgQDL
+						JYm2+RcW6vUTHIe6+TTVxcjZEyyTH1sAvlQoLlthAT+7fQT0+0irExYvLAUOSoDv
+						ut/rd7hmTjcRkNv8TW6bcEmU6V4FKsg3wF32Hk3ttheDsBi/CvJHgpbBKfTInik5
+						tCzQ1QdMQVZMDdS0d53hvKlXxsx3pf0IPbo+JpSHWZgFhUc/qtuar7O3YRcYOBJd
+						jk7mSKhBIX/ZOt7VxChrAz9wvClQgAmccdgb6ucoOCskRe+2g5kYGkC41ZHgd04J
+						Mc1hudmIpj4CsiEAiKePxLiMdtQFvOlo2LaHeD7S6vYnbY6zzm5UdskBMVNH0p6q
+						mkKT3dqWBYCtBTgCD4dSnGzZjEJ/IZdTxQC2qdZrgijka59B1v8eOSSXno9wEkCh
+						NAy4PUYTIbxD4No0HR4IG1YdUghvx1N6CtN8lJlUf+BuKfguf7lW+NRLv5rFq6iL
+						sVzmGStY/qLPfXfi6e6Evt6ZuVBma9QUjp82+5xhyX/Hd4aVlWoLyWhk1h6noBY=
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>
+		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://milngavie.cent.gla.ac.uk/idp/profile/SAML2/POST/SSO"/>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://milngavie.cent.gla.ac.uk/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://milngavie.cent.gla.ac.uk/idp/profile/SAML2/Redirect/SSO"/>
+	</IDPSSODescriptor>
+	<Organization>
+		<OrganizationName xml:lang="en">University of Glasgow</OrganizationName>
+		<OrganizationDisplayName xml:lang="en">University of Glasgow</OrganizationDisplayName>
+		<OrganizationURL xml:lang="en">http://www.gla.ac.uk/</OrganizationURL>
+	</Organization>
+	<ContactPerson contactType="support">
+		<GivenName>IT Helpdesk</GivenName>
+		<EmailAddress>mailto:ithelpdesk@glasgow.ac.uk</EmailAddress>
+	</ContactPerson>
+	<ContactPerson contactType="technical">
+		<GivenName>John</GivenName>
+		<SurName>Watt</SurName>
+		<EmailAddress>mailto:John.Watt@glasgow.ac.uk</EmailAddress>
+	</ContactPerson>
+
+	<ContactPerson xmlns:remd="http://refeds.org/metadata" contactType="other" remd:contactType="http://refeds.org/metadata/contactType/security">
+		<GivenName>IT Security Team</GivenName>
+		<EmailAddress>mailto:cert@gla.ac.uk</EmailAddress>
+	</ContactPerson>
+</EntityDescriptor>

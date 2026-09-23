@@ -1,0 +1,78 @@
+name: University of Glasgow — institutional vocabulary
+aid: university-of-glasgow
+generated: '2026-08-30'
+method: derived
+source: >-
+  terms taken from the University of Glasgow's own responses — OAI-PMH Identify and
+  ListMetadataFormats output, EPrints REST records, SAML metadata and DataCite/Crossref registry
+  entries — read live on 2026-08-30
+note: >-
+  Institution-specific naming a consumer or an agent has to know to work with Glasgow's surfaces.
+  Every term below appears verbatim in a response from a University of Glasgow host or in a registry
+  record naming the university. No term is invented.
+terms:
+- term: Enlighten
+  definition: >-
+    The umbrella name for the University of Glasgow's institutional repository estate, run by the
+    University Library on the EPrints platform. Three separately addressable repositories carry the
+    name.
+  observed_in: OAI-PMH Identify repositoryName on all three endpoints
+- term: Enlighten Publications
+  definition: >-
+    The research outputs repository — journal articles, conference papers, books, book sections.
+    OAI-PMH base https://eprints.gla.ac.uk/cgi/oai2, administered by research-enlighten@glasgow.ac.uk.
+  observed_in: https://eprints.gla.ac.uk/cgi/oai2?verb=Identify
+- term: Enlighten Research Data
+  definition: >-
+    The research data repository and registry, minting DOIs under prefix 10.5525 as
+    10.5525/gla.researchdata.NNN. Administered by research-datamanagement@glasgow.ac.uk.
+  observed_in: https://researchdata.gla.ac.uk/cgi/oai2?verb=Identify
+- term: Enlighten Theses
+  definition: >-
+    The electronic theses repository, administered by theses@glasgow.ac.uk, carrying the uketd_dc
+    metadata profile used by the British Library's EThOS service.
+  observed_in: https://theses.gla.ac.uk/cgi/oai2?verb=Identify
+- term: GUID
+  definition: >-
+    Glasgow University IDentifier — the institutional username and single sign-on credential that
+    fronts every gated Glasgow system. It is the human end of the Shibboleth identity provider, not
+    an API credential.
+  observed_in: https://www.gla.ac.uk/myglasgow/it/
+- term: gla.ac.uk
+  definition: >-
+    The shibmd:Scope asserted by the institution's Shibboleth identity provider — the attribute
+    scope that identifies a principal as a member of the University of Glasgow across the UK Access
+    Management Federation and eduGAIN.
+  observed_in: https://idp.gla.ac.uk/idp/shibboleth
+- term: https://idp.gla.ac.uk/shibboleth
+  definition: >-
+    The SAML entityID of the University of Glasgow's production identity provider. Note that it is
+    NOT the URL the metadata is served from — that is https://idp.gla.ac.uk/idp/shibboleth. Callers
+    that conflate the two will fail to resolve the entity in federation metadata.
+  observed_in: UK Access Management Federation MDQ
+- term: '10.5525'
+  definition: >-
+    The University of Glasgow's DataCite DOI prefix, held since 2010 under DataCite client
+    bl.glasgow and provider ihoc.
+  observed_in: https://api.datacite.org/prefixes/10.5525
+- term: rioxx
+  definition: >-
+    An OAI-PMH metadata prefix offered by Enlighten Publications, carrying the RIOXX application
+    profile used for UK open-access and REF compliance reporting. Not offered by the theses or
+    research data endpoints.
+  observed_in: https://eprints.gla.ac.uk/cgi/oai2?verb=ListMetadataFormats
+- term: uketd_dc
+  definition: >-
+    An OAI-PMH metadata prefix offered by Enlighten Publications and Enlighten Theses, carrying the
+    UK Electronic Theses Online Service Dublin Core profile.
+  observed_in: https://theses.gla.ac.uk/cgi/oai2?verb=ListMetadataFormats
+- term: eleanor
+  definition: >-
+    The library catalogue host, eleanor.lib.gla.ac.uk, running Innovative Interfaces Sierra. The
+    Sierra API lives beneath it at /iii/sierra-api/v6/ and is credentialed.
+  observed_in: https://eleanor.lib.gla.ac.uk/
+- term: http://eprints.org/ep2/data/2.0
+  definition: >-
+    The XML namespace of every record returned by the Enlighten REST interface — the EPrints 2.0
+    data schema, not a Glasgow-specific schema.
+  observed_in: https://eprints.gla.ac.uk/rest/eprint/1.xml

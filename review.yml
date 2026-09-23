@@ -3,7 +3,7 @@ name: University of Glasgow
 description: University of Glasgow public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/university-of-glasgow/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reviews:
   - date: '2026-06-03'
     rating: 2
@@ -47,3 +47,81 @@ reviews:
       - url: https://www.linkedin.com/school/university-of-glasgow/
         status: 999
         note: Official LinkedIn school page; 999 is LinkedIn anti-bot, page exists.
+  - date: '2026-08-30'
+    rating: 3
+    summary: >-
+      Re-profiled under the university pipeline with the operator axis applied. The finding that
+      matters for this cohort is a negative one: nothing in this repository was ever a vendor's
+      contract misattributed to the institution — there was no Figshare, Pure, Ex Libris, Symplectic
+      or Dataverse spec to remove, and no artifact was deleted in this run. Glasgow's programmable
+      footprint is genuinely its own, and it grew: three previously uncatalogued surfaces were found
+      and probed live — the Enlighten Theses OAI-PMH endpoint, the undocumented anonymous-read
+      Enlighten EPrints REST interface across all three repositories, and the Shibboleth SAML 2.0
+      identity provider scoped gla.ac.uk, registered in the UK Access Management Federation with a
+      signed MDQ entry. Domain-standard conformance under the education regime was confirmed by
+      probe for oai-pmh, shibboleth, saml, datacite, orcid, crossref and lti — seven of the twelve
+      named standards, every one with a fetched URL and a status code behind it. Two live surfaces
+      run a third party's contract on Glasgow's own hosts and are labelled that way rather than
+      credited: the self-hosted Moodle VLE's LTI 1.3 platform endpoints, and the library's
+      Innovative Interfaces Sierra API at eleanor.lib.gla.ac.uk. Two are outright vendor tenancies
+      recorded as tenant relationships: OCLC WorldCat Discovery at gla.on.worldcat.org and
+      Springshare LibGuides at gla.libguides.com. What remains absent is developer experience, not
+      surface area: no developer portal, no API key issuance, no changelog, no status page (status.gla.ac.uk
+      does not resolve), no support channel, no scopes, no versioning policy and no machine-readable
+      error documents. www.gla.ac.uk/llms.txt is a 301 to a law postgraduate page rather than an
+      agent manifest, and there is no .well-known/security.txt. No endpoints were fabricated.
+    endpoints:
+      - url: https://eprints.gla.ac.uk/cgi/oai2?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0 "Enlighten Publications"; formats include rioxx and uketd_dc.
+      - url: https://researchdata.gla.ac.uk/cgi/oai2?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0 "Enlighten Research Data"; records carry DOIs under prefix 10.5525.
+      - url: https://theses.gla.ac.uk/cgi/oai2?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0 "Enlighten Theses" — new find, not in the 2026-06-03 profile.
+      - url: https://eprints.gla.ac.uk/rest/
+        status: 200
+        note: Undocumented EPrints REST dataset index — eprint, user, subject.
+      - url: https://eprints.gla.ac.uk/rest/eprint/1.xml
+        status: 200
+        note: 12,470-byte EPrints 2.0 XML record returned anonymously.
+      - url: https://eprints.gla.ac.uk/rest/user/1.xml
+        status: 401
+        note: User records correctly gated; the public index exposes identifiers only.
+      - url: https://idp.gla.ac.uk/idp/shibboleth
+        status: 200
+        note: SAML 2.0 IdP metadata, entityID https://idp.gla.ac.uk/shibboleth, scope gla.ac.uk.
+      - url: http://mdq.ukfederation.org.uk/entities/https%3A%2F%2Fidp.gla.ac.uk%2Fshibboleth
+        status: 200
+        note: Signed UK Access Management Federation metadata, 8,816 bytes.
+      - url: https://api.datacite.org/prefixes/10.5525
+        status: 200
+        note: DataCite client bl.glasgow, provider ihoc "University of Glasgow", held since 2010.
+      - url: https://api.crossref.org/members?query=university+of+glasgow
+        status: 200
+        note: Crossref member 21131, 709 deposited DOIs.
+      - url: https://moodle.gla.ac.uk/mod/lti/certs.php
+        status: 200
+        note: Live LTI 1.3 platform JWKS on a self-hosted Moodle; contract is Moodle's.
+      - url: https://eleanor.lib.gla.ac.uk/iii/sierra-api/v6/info/token
+        status: 401
+        note: Innovative Interfaces Sierra API live and credentialed on the library's own host.
+      - url: https://gla.on.worldcat.org/advancedsearch
+        status: 200
+        note: OCLC WorldCat Discovery tenancy — recorded as tenant, not credited.
+      - url: https://gla.libguides.com/az/databases
+        status: 200
+        note: Springshare LibGuides tenancy — recorded as tenant, not credited.
+      - url: https://github.com/University-of-Glasgow-Public
+        status: 200
+        note: Official university-wide public GitHub org, created 2025-04-28; blog gla.ac.uk.
+      - url: https://www.gla.ac.uk/llms.txt
+        status: 301
+        note: Redirects to /schools/law/postgraduate/ — not an agent manifest.
+      - url: https://www.gla.ac.uk/.well-known/security.txt
+        status: 404
+        note: No security.txt published.
+      - url: https://status.gla.ac.uk/
+        status: 000
+        note: Does not resolve; no public status page.

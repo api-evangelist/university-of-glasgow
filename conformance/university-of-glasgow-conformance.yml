@@ -1,0 +1,198 @@
+name: University of Glasgow — domain standard conformance
+aid: university-of-glasgow
+generated: '2026-08-30'
+method: derived
+x-evidence-method: probed
+source: >-
+  live probes of University of Glasgow operated hosts and of the registries those hosts are
+  registered in (UK Access Management Federation MDQ, DataCite, Crossref), 2026-08-30
+regime: education
+note: >-
+  Reward-only. Every entry below was confirmed by fetching the named URL and reading the response
+  body, never by reading a prose claim on a web page. Standards from the education regime that were
+  looked for and NOT found are listed under not_found, so the absence is a measurement rather than a
+  silence. Where the deployment is the institution's but the software is a third party's, that is
+  stated in the entry rather than hidden.
+standards:
+- standard: oai-pmh
+  status: conformant
+  operator: institution
+  version: '2.0'
+  evidence:
+    url: https://eprints.gla.ac.uk/cgi/oai2?verb=Identify
+    status: 200
+    content_type: text/xml
+    detail: >-
+      Identify returns repositoryName "Enlighten Publications", protocolVersion 2.0, baseURL
+      https://eprints.gla.ac.uk/cgi/oai2, adminEmail research-enlighten@glasgow.ac.uk,
+      granularity YYYY-MM-DDThh:mm:ssZ, deletedRecord persistent, earliestDatestamp
+      2025-03-28T21:34:23Z. eprints.gla.ac.uk is a CNAME to new-rocky.lib.gla.ac.uk
+      (130.209.34.164), inside the University of Glasgow's own network.
+  secondary_evidence:
+  - url: https://researchdata.gla.ac.uk/cgi/oai2?verb=Identify
+    status: 200
+    detail: >-
+      repositoryName "Enlighten Research Data", adminEmail research-datamanagement@glasgow.ac.uk,
+      earliestDatestamp 2015-07-24T09:30:57Z. Host CNAMEs to new-researchdata.lib.gla.ac.uk
+      (130.209.34.138).
+  - url: https://theses.gla.ac.uk/cgi/oai2?verb=Identify
+    status: 200
+    detail: >-
+      repositoryName "Enlighten Theses", adminEmail theses@glasgow.ac.uk, earliestDatestamp
+      2012-12-10T13:15:47Z. Host CNAMEs to new-theses.lib.gla.ac.uk (130.209.34.163). This endpoint
+      was not in the previous profile and was found in this run.
+  metadata_formats:
+  - oai_dc
+  - didl
+  - mets
+  - oai_bibl
+  - rdf
+  - rioxx
+  - uketd_dc
+  endpoints: 3
+  checked: '2026-08-30'
+- standard: shibboleth
+  status: conformant
+  operator: institution
+  evidence:
+    url: https://idp.gla.ac.uk/idp/shibboleth
+    status: 200
+    content_type: application/xml
+    detail: >-
+      The University of Glasgow runs its own Shibboleth Identity Provider. The IdP serves its own
+      SAML EntityDescriptor at this URL with entityID https://idp.gla.ac.uk/shibboleth and declares
+      shibmd:Scope regexp="false">gla.ac.uk. The SSO endpoints resolve to
+      milngavie.cent.gla.ac.uk; the server header is Jetty 12.1.9. idp.gla.ac.uk is 130.209.18.103,
+      the institution's own address space.
+  entity_id: https://idp.gla.ac.uk/shibboleth
+  scope: gla.ac.uk
+  checked: '2026-08-30'
+- standard: saml
+  status: conformant
+  operator: institution
+  version: SAML 2.0
+  evidence:
+    url: http://mdq.ukfederation.org.uk/entities/https%3A%2F%2Fidp.gla.ac.uk%2Fshibboleth
+    status: 200
+    content_type: application/samlmetadata+xml
+    detail: >-
+      The UK Access Management Federation's MDQ service returns an 8,816-byte signed
+      EntityDescriptor for entityID https://idp.gla.ac.uk/shibboleth with
+      registrationAuthority="http://ukfederation.org.uk", OrganizationDisplayName "University of
+      Glasgow" and shibmd:Scope gla.ac.uk. The IdP advertises SAML 2.0 HTTP-POST,
+      HTTP-POST-SimpleSign and HTTP-Redirect SingleSignOnService bindings plus the legacy
+      Shibboleth 1 AuthnRequest profile.
+  secondary_evidence:
+    url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+    status: 200
+    detail: >-
+      The 87.9 MB UK federation aggregate carries 11,166 entities. Exactly two of them belong to
+      the University of Glasgow — https://idp.gla.ac.uk/shibboleth (production) and
+      https://idptest.gla.ac.uk/idp/shibboleth (test). Glasgow registers no Service Provider
+      entities in the federation. Other Glasgow-named entities in the aggregate (Glasgow School of
+      Art, City of Glasgow College, Glasgow Kelvin, Glasgow Clyde, Glasgow Caledonian) are separate
+      institutions and are not counted here.
+  entity_count: 2
+  service_providers: 0
+  federations:
+  - UK Access Management Federation
+  - eduGAIN
+  checked: '2026-08-30'
+- standard: datacite
+  status: conformant
+  operator: institution
+  evidence:
+    url: https://api.datacite.org/prefixes/10.5525
+    status: 200
+    content_type: application/vnd.api+json
+    detail: >-
+      DOI prefix 10.5525 is registered to DataCite client bl.glasgow under provider ihoc, whose
+      DataCite record names "University of Glasgow" with website
+      https://www.gla.ac.uk/myglasgow/library/. The prefix has been held since 2010-12-21.
+  secondary_evidence:
+    url: https://researchdata.gla.ac.uk/cgi/oai2?verb=ListRecords&metadataPrefix=oai_dc
+    status: 200
+    detail: >-
+      The Enlighten Research Data OAI-PMH feed returns live records carrying DOIs minted under that
+      prefix — 10.5525/gla.researchdata.43, 10.5525/gla.researchdata.67,
+      10.5525/gla.researchdata.153 among 444 identifier elements in a single 266 KB page. The
+      minting runs on the institution's own EPrints deployment, not on a vendor repository platform.
+  prefix: '10.5525'
+  datacite_provider: ihoc
+  datacite_client: bl.glasgow
+  checked: '2026-08-30'
+- standard: orcid
+  status: conformant
+  operator: institution
+  evidence:
+    url: https://eprints.gla.ac.uk/cgi/oai2?verb=ListRecords&metadataPrefix=oai_dc
+    status: 200
+    content_type: text/xml
+    detail: >-
+      Author ORCID iDs are carried inline in the Enlighten Publications OAI-PMH output as
+      orcid.org/0000-0003-0505-705X, orcid.org/0000-0003-1780-1106 and others, meaning the
+      institution's own repository holds and republishes ORCID identifiers in its harvestable
+      metadata. This is an institution-operated surface: eprints.gla.ac.uk is Glasgow's own EPrints
+      instance on Glasgow's own host.
+  checked: '2026-08-30'
+- standard: crossref
+  status: conformant
+  operator: institution
+  evidence:
+    url: https://api.crossref.org/members?query=university+of+glasgow
+    status: 200
+    content_type: application/json
+    detail: >-
+      The University of Glasgow is Crossref member 21131 with 709 deposited DOIs. This is an
+      institutional membership and DOI-deposit relationship, confirmed in Crossref's own registry.
+      It is not an institution-operated Crossref API endpoint, and it is recorded at that strength
+      and no higher.
+  crossref_member_id: 21131
+  deposited_dois: 709
+  checked: '2026-08-30'
+- standard: lti
+  status: conformant
+  operator: institution
+  version: LTI 1.3 / LTI Advantage
+  x-vendor: moodle
+  evidence:
+    url: https://moodle.gla.ac.uk/mod/lti/certs.php
+    status: 200
+    content_type: application/json
+    detail: >-
+      The institution's virtual learning environment at moodle.gla.ac.uk (130.209.14.69, Glasgow's
+      own address space, self-hosted rather than a moodlecloud tenancy) serves a live LTI 1.3
+      platform JWKS containing one RSA RS256 signing key, kid 0158c55253498f8212e2. The OIDC
+      authorisation endpoint at /mod/lti/auth.php answers 200 and the token endpoint at
+      /mod/lti/token.php answers 400 to an unsigned request — both live. The deployment and the
+      host are the institution's; the LTI implementation is Moodle's, which is stated here rather
+      than credited to Glasgow.
+  checked: '2026-08-30'
+- standard: rioxx
+  status: conformant
+  operator: institution
+  in_regime: false
+  evidence:
+    url: https://eprints.gla.ac.uk/cgi/oai2?verb=ListMetadataFormats
+    status: 200
+    detail: >-
+      Enlighten Publications offers the rioxx metadata prefix — the RIOXX application profile used
+      for UK open-access and REF compliance reporting — alongside uketd_dc, the UK Electronic
+      Theses Online Service profile. Neither is one of the education regime's named standards;
+      recorded for completeness and must not be scored as one.
+  checked: '2026-08-30'
+not_found:
+- standard: scim
+  detail: >-
+    No SCIM 2.0 provisioning endpoint is publicly discoverable on any gla.ac.uk host. Identity
+    provisioning at Glasgow runs behind the GUID single sign-on estate.
+- standard: oneroster
+  detail: No OneRoster rostering endpoint found on any institution host.
+- standard: ed-fi
+  detail: Ed-Fi is a US K-12 and state-education-agency standard; not applicable to a UK university.
+- standard: caliper
+  detail: >-
+    No public Caliper learning-analytics endpoint found. Moodle can emit Caliper events but no
+    public sensor endpoint is exposed at moodle.gla.ac.uk.
+- standard: qti
+  detail: No public QTI item bank or assessment delivery endpoint found.

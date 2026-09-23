@@ -1,0 +1,210 @@
+openapi: 3.0.3
+info:
+  title: Enlighten EPrints REST API
+  version: '3.4'
+  description: >-
+    The read interface exposed by the University of Glasgow's Enlighten repositories, which run the
+    EPrints repository platform on the university's own hosts. The interface walks the repository's
+    datasets — eprints, subjects and users — as a browsable, machine-addressable tree: a dataset
+    index, an object index per dataset, an EPrints XML document per object, and a per-field plain
+    text view of any field on any object. Read access is anonymous; write access and any user record
+    require credentials and answer 401.
+
+    This description was DERIVED by API Evangelist from live probes of https://eprints.gla.ac.uk/rest
+    on 2026-08-30. The University of Glasgow does not publish an OpenAPI for this interface. The
+    path shapes and media types below were each individually requested and their status codes and
+    Content-Type headers recorded; nothing here is inferred from EPrints documentation alone.
+  contact:
+    name: Enlighten, University of Glasgow Library
+    email: research-enlighten@glasgow.ac.uk
+    url: https://eprints.gla.ac.uk/information.html
+  x-operator: institution
+  x-provenance:
+    generated: '2026-08-30'
+    method: derived
+    source: >-
+      live HTTP probes of https://eprints.gla.ac.uk/rest/, /rest/eprint/, /rest/eprint/1.xml,
+      /rest/eprint/1/, /rest/eprint/1/title.txt, /rest/subject/, /rest/user/ and /rest/user/1.xml
+      on 2026-08-30
+    author: API Evangelist
+    note: >-
+      Not published by the University of Glasgow. A third-party description of a live public
+      interface, written from observed responses.
+servers:
+- url: https://eprints.gla.ac.uk/rest
+  description: Enlighten Publications — institutional repository of research outputs
+- url: https://theses.gla.ac.uk/rest
+  description: Enlighten Theses — electronic theses repository
+- url: https://researchdata.gla.ac.uk/rest
+  description: Enlighten Research Data — research data repository and registry
+tags:
+- name: Repository
+  description: Dataset and object traversal over the EPrints repository.
+paths:
+  /:
+    get:
+      tags: [Repository]
+      operationId: listDatasets
+      summary: List the datasets exposed by the repository
+      description: >-
+        Returns an XHTML index of the datasets the REST interface exposes. Verified 2026-08-30 on
+        eprints.gla.ac.uk returning eprint, user and subject.
+      responses:
+        '200':
+          description: XHTML dataset index
+          content:
+            text/html:
+              schema:
+                type: string
+  /eprint/:
+    get:
+      tags: [Repository]
+      operationId: listEprints
+      summary: List every eprint id in the repository
+      description: >-
+        Returns an XHTML index linking each eprint id both as a directory and as an .xml document.
+        Verified 2026-08-30 returning 22,322,001 bytes on eprints.gla.ac.uk — this is a full-repository
+        listing and should be requested with that in mind.
+      responses:
+        '200':
+          description: XHTML index of eprint identifiers
+          content:
+            text/html:
+              schema:
+                type: string
+  /eprint/{eprintid}.xml:
+    get:
+      tags: [Repository]
+      operationId: getEprintRecord
+      summary: Retrieve one eprint as an EPrints XML document
+      description: >-
+        Returns the full record in the EPrints 2.0 data schema
+        (http://eprints.org/ep2/data/2.0), including documents, files, creators with ORCID
+        identifiers where held, and the full metadata set. Verified 2026-08-30 with eprintid 1
+        returning 12,470 bytes of text/xml.
+      parameters:
+      - name: eprintid
+        in: path
+        required: true
+        description: The numeric EPrints identifier of the record.
+        schema:
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: EPrints XML record
+          content:
+            text/xml:
+              schema:
+                type: string
+        '404':
+          description: No such eprint in this repository
+  /eprint/{eprintid}/:
+    get:
+      tags: [Repository]
+      operationId: listEprintFields
+      summary: List the fields held on one eprint
+      description: >-
+        Returns an XHTML index of the individually addressable fields on the record. Verified
+        2026-08-30 with eprintid 1.
+      parameters:
+      - name: eprintid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: XHTML index of field names
+          content:
+            text/html:
+              schema:
+                type: string
+  /eprint/{eprintid}/{field}.txt:
+    get:
+      tags: [Repository]
+      operationId: getEprintField
+      summary: Retrieve a single field from one eprint as plain text
+      description: >-
+        Returns the raw value of one field. Verified 2026-08-30 with /eprint/1/title.txt returning
+        114 bytes of text/plain.
+      parameters:
+      - name: eprintid
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: field
+        in: path
+        required: true
+        description: A field name taken from the field index of the same record.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Field value
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No such field on this record
+  /subject/:
+    get:
+      tags: [Repository]
+      operationId: listSubjects
+      summary: List the repository subject taxonomy
+      description: >-
+        Returns an XHTML index over the subject dataset. Verified 2026-08-30 returning 647,711 bytes
+        on eprints.gla.ac.uk.
+      responses:
+        '200':
+          description: XHTML index of subject identifiers
+          content:
+            text/html:
+              schema:
+                type: string
+  /user/:
+    get:
+      tags: [Repository]
+      operationId: listUserIds
+      summary: List user record identifiers
+      description: >-
+        Returns an XHTML index of user record identifiers only. The records themselves are NOT
+        public — /user/{id}.xml answered 401 when probed on 2026-08-30 — so no personal data is
+        reachable through this path.
+      responses:
+        '200':
+          description: XHTML index of user identifiers
+          content:
+            text/html:
+              schema:
+                type: string
+  /user/{userid}.xml:
+    get:
+      tags: [Repository]
+      operationId: getUserRecord
+      summary: Retrieve one user record (credentialed)
+      description: >-
+        Requires repository credentials. Verified 2026-08-30 returning 401 to an anonymous request.
+      security:
+      - basicAuth: []
+      parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: EPrints XML user record
+        '401':
+          description: Authentication required
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        EPrints HTTP Basic authentication, required for user records and for any write operation.
+        Read access to eprint, subject and the dataset indexes needs no credential.
