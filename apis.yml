@@ -135,7 +135,7 @@ tags:
   - Identity Federation
   - Digital Library
 created: '2026-06-03'
-modified: '2026-08-30'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: university-of-glasgow:enlighten-oai
@@ -371,6 +371,8 @@ apis:
   - type: Documentation
     url: https://eprints.gla.ac.uk/information.html
 common:
+  - url: https://www.gla.ac.uk/news/
+    type: Blog
   - type: Website
     url: https://www.gla.ac.uk/
   - type: GitHubOrganization
