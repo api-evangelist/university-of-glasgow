@@ -258,6 +258,11 @@ apis:
   humanURL: https://moodle.gla.ac.uk/
   baseURL: https://moodle.gla.ac.uk/webservice/rest/server.php
   tags:
+  - LMS
+  - LTI
+  - Virtual Learning Environment
+  - Education
+  tags_raw:
   - Learning Management
   - LTI
   - Virtual Learning Environment
